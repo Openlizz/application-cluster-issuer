@@ -1,0 +1,16 @@
+name: cluster-issuer
+values:
+  applicationDependencies:
+    - name: isCertManagerInstalled
+      repository: gitlab.com/openlizz/applications/cert-manager
+      shaRange: HEAD
+  clusterValues:
+    - name: certManagerName
+      template: '{{ range .Applications }}{{ if eq .Configuration.Repository "gitlab.com/openlizz/applications/cert-manager" }}{{.Name}}{{ end }}{{ end }}'
+    - name: certManagerNamespace
+      template: '{{ range .Applications }}{{ if eq .Configuration.Repository "gitlab.com/openlizz/applications/cert-manager" }}{{.Configuration.Namespace}}{{ end }}{{ end }}'
+dependencies:
+  - {{index . "isCertManagerInstalled"}}
+dependsOn:
+  - name: {{index . "certManagerName"}}
+    namespace: {{index . "certManagerNamespace"}}
