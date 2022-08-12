@@ -9,6 +9,13 @@ values:
       template: '{{ range .Applications }}{{ if eq .Configuration.Repository "gitlab.com/openlizz/applications/cert-manager" }}{{.Name}}{{ end }}{{ end }}'
     - name: certManagerNamespace
       template: '{{ range .Applications }}{{ if eq .Configuration.Repository "gitlab.com/openlizz/applications/cert-manager" }}{{.Configuration.Namespace}}{{ end }}{{ end }}'
+  userValues:
+    - name: b64crt
+    - name: b64key
+encryption:
+  enabled: true
+  inputPaths:
+    - ca/secret.yaml
 dependencies:
   - {{index . "isCertManagerInstalled"}}
 dependsOn:
