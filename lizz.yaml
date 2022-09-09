@@ -11,6 +11,7 @@ values:
   userValues:
     - name: b64crt
     - name: b64key
+    - name: email
 encryption:
   enabled: true
   inputPaths:
