@@ -2,12 +2,12 @@ name: cluster-issuer
 values:
   applicationDependencies:
     - name: isCertManagerInstalled
-      repository: gitlab.com/openlizz/applications/cert-manager
+      repository: github.com/openlizz/application-cert-manager
   clusterValues:
     - name: certManagerName
-      template: '{{ range .Applications }}{{ if eq .Configuration.Repository "gitlab.com/openlizz/applications/cert-manager" }}{{.Name}}{{ end }}{{ end }}'
+      template: '{{ range .Applications }}{{ if eq .Configuration.Repository "github.com/openlizz/application-cert-manager" }}{{.Name}}{{ end }}{{ end }}'
     - name: certManagerNamespace
-      template: '{{ range .Applications }}{{ if eq .Configuration.Repository "gitlab.com/openlizz/applications/cert-manager" }}{{.Configuration.Namespace}}{{ end }}{{ end }}'
+      template: '{{ range .Applications }}{{ if eq .Configuration.Repository "github.com/openlizz/application-cert-manager" }}{{.Configuration.Namespace}}{{ end }}{{ end }}'
   userValues:
     - name: b64crt
     - name: b64key
